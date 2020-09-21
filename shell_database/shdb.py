@@ -1,9 +1,11 @@
 import click
 import logging
 from shell_database.store.store import DataStore
+from shell_database.store.encryption import EncryptionManager
 
 
 _data_store = DataStore()
+_encryption_manager = EncryptionManager()
 
 
 @click.group()
@@ -20,14 +22,20 @@ def cli(verbose: bool = False, debug: bool = False):
 @cli.command(help="Add a new key value pair")
 @click.argument('key')
 @click.argument('value')
-def add(key, value):
+@click.option('-e', '--encrypt', help="Encrypt the value before storing it", is_flag=True, required=False)
+def add(key, value, encrypt: bool):
+    if encrypt:
+        value = _encryption_manager.encrypt(value)
     _data_store.add(key, value)
 
 
 @cli.command(help="Get the value from a key")
 @click.argument('key')
-def get(key):
+@click.option('-d', '--decrypt', help="Decrypt the value stored", is_flag=True, required=False)
+def get(key, decrypt):
     value = _data_store.get(key)
+    if decrypt and isinstance(value, bytes):
+        value = _encryption_manager.decrypt(value)
     print(value)
 
 
