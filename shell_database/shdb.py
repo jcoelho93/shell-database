@@ -1,6 +1,9 @@
 import click
 import logging
-from sqlitedict import SqliteDict
+from shell_database.store.store import DataStore
+
+
+_data_store = DataStore()
 
 
 @click.group()
@@ -14,19 +17,29 @@ def cli(verbose: bool = False, debug: bool = False):
         logging.debug('debug output enabled')
 
 
-@cli.command()
+@cli.command(help="Add a new key value pair")
 @click.argument('key')
 @click.argument('value')
 def add(key, value):
-    with SqliteDict('./shdb.sqlite', autocommit=True) as db:
-        db[key] = value
+    _data_store.add(key, value)
 
 
-@cli.command()
+@cli.command(help="Get the value from a key")
 @click.argument('key')
 def get(key):
-    with SqliteDict('./shdb.sqlite', autocommit=True) as db:
-        print(db[key])
+    value = _data_store.get(key)
+    print(value)
+
+
+@cli.command('list', help="List the stored keys")
+@click.argument('pattern', required=False)
+@click.option('-c', '--count', help="Counts the number of keys found", required=False, is_flag=True)
+def list_keys(pattern: str = None, count: bool = False):
+    keys = _data_store.list_keys(pattern)
+    if count:
+        print(len(keys))
+    for key in keys:
+        print(key)
 
 
 if __name__ == '__main__':
