@@ -28,8 +28,8 @@ class DataStore:
 
     def list_keys(self, pattern: str = None):
         with SqliteDict(str(self.store), flag='r', autocommit=True) as db:
-            keys = [k for k,_ in db.items()]
+            keys = [k for k, _ in db.items()]
         if pattern:
             keys = process.extract(pattern, keys)
-            return [k for k,rating in keys if rating > 50]
+            return [k for k, rating in keys if rating > 50]
         return keys

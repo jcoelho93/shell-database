@@ -2,6 +2,7 @@ from pathlib import Path
 from shell_database import __encoding__
 from cryptography.fernet import Fernet
 
+
 class EncryptionManager:
 
     DEFAULT_KEY_FILE = Path.home() / '.shdb/secret.key'
