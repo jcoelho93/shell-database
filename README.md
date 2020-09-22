@@ -47,6 +47,7 @@ b'51b8684c4dc77da0979f1b647caa707c'
 
 ## License
 
+MIT License
 
 ## Disclaimer
 
