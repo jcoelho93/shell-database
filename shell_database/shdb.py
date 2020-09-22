@@ -4,8 +4,14 @@ from shell_database.store.store import DataStore
 from shell_database.store.encryption import EncryptionManager
 
 
-_data_store = DataStore()
-_encryption_manager = EncryptionManager()
+_data_store = None
+_encryption_manager = None
+
+
+def setup():
+    global _data_store, _encryption_manager
+    _data_store = DataStore()
+    _encryption_manager = EncryptionManager()
 
 
 @click.group()
@@ -17,6 +23,7 @@ def cli(verbose: bool = False, debug: bool = False):
     if debug:
         logging.getLogger().setLevel(level='DEBUG')
         logging.debug('debug output enabled')
+    setup()
 
 
 @cli.command(help="Add a new key value pair")
@@ -36,7 +43,8 @@ def get(key, decrypt):
     value = _data_store.get(key)
     if decrypt and isinstance(value, bytes):
         value = _encryption_manager.decrypt(value)
-    print(value)
+    if value:
+        print(value)
 
 
 @cli.command('list', help="List the stored keys")

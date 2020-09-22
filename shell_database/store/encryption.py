@@ -1,10 +1,10 @@
 from pathlib import Path
+from shell_database import __encoding__
 from cryptography.fernet import Fernet
 
 class EncryptionManager:
 
     DEFAULT_KEY_FILE = Path.home() / '.shdb/secret.key'
-    ENCODING = "UTF-8"
 
     def __init__(self, filename: Path = None):
         filename = filename or EncryptionManager.DEFAULT_KEY_FILE
@@ -14,7 +14,7 @@ class EncryptionManager:
             self.key = self.__load_key(filename)
 
     def encrypt(self, value: str) -> bytes:
-        encoded = value.encode(EncryptionManager.ENCODING)
+        encoded = value.encode(__encoding__)
         f = Fernet(self.key)
         encrypted = f.encrypt(encoded)
         return encrypted
@@ -22,15 +22,14 @@ class EncryptionManager:
     def decrypt(self, data: bytes) -> str:
         f = Fernet(self.key)
         decrypted = f.decrypt(data)
-        return decrypted.decode(EncryptionManager.ENCODING)
-
+        return decrypted.decode(__encoding__)
 
     def __generate_key(self, filename: Path):
-        if not filename.exists():
-            filename.parent.mkdir(parents=True, exist_ok=True)
-            key = Fernet.generate_key()
-            with filename.open(mode='wb') as key_file:
-                key_file.write(key)
+        filename.parent.mkdir(parents=True, exist_ok=True)
+        key = Fernet.generate_key()
+        with filename.open(mode='wb') as key_file:
+            filename.chmod(0o600)
+            key_file.write(key)
         return key
 
     def __load_key(self, filename: Path):

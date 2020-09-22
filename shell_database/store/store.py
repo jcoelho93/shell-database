@@ -11,18 +11,23 @@ class DataStore:
         self.store = filename or DataStore.DEFAULT_FILE
         if not self.store.parent.exists():
             self.store.parent.mkdir(parents=True, exist_ok=True)
-        self.store = str(self.store)
+        sqlite = SqliteDict(self.store)
+        sqlite.close()
+        self.store.chmod(0o600)
 
     def add(self, key, value):
-        with SqliteDict(self.store, autocommit=True) as db:
+        with SqliteDict(str(self.store), autocommit=True) as db:
             db[key] = value
 
-    def get(self, key):
-        with SqliteDict(self.store, autocommit=True) as db:
-            return db[key]
+    def get(self, key) -> str:
+        with SqliteDict(str(self.store), flag='r', autocommit=True) as db:
+            try:
+                return db[key]
+            except KeyError:
+                return None
 
     def list_keys(self, pattern: str = None):
-        with SqliteDict(self.store, autocommit=True) as db:
+        with SqliteDict(str(self.store), flag='r', autocommit=True) as db:
             keys = [k for k,_ in db.items()]
         if pattern:
             keys = process.extract(pattern, keys)
