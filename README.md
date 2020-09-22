@@ -2,7 +2,7 @@
 
 ## Installation
 
-You can intall shell-database from `pypi.org`:
+You can install shell-database from `pypi.org`:
 ```console
 > pip install shell_database
 ```
