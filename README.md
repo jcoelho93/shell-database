@@ -1,5 +1,7 @@
 # Shell Database
 
+[![CircleCI](https://img.shields.io/circleci/build/github/jcoelho93/shell-database/master?logo=circleci)](https://app.circleci.com/pipelines/github/jcoelho93/shell-database)
+
 ## Installation
 
 You can install shell-database from `pypi.org`:
