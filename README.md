@@ -1,6 +1,11 @@
 # Shell Database
 
 [![CircleCI](https://img.shields.io/circleci/build/github/jcoelho93/shell-database/master?logo=circleci)](https://app.circleci.com/pipelines/github/jcoelho93/shell-database)
+[![PyPI](https://img.shields.io/pypi/v/shell-database)](https://pypi.org/project/shell-database/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/shell-database?logo=python)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/shell-database)
+[![PyPI - License](https://img.shields.io/pypi/l/shell-database)](https://github.com/jcoelho93/shell-database/blob/master/LICENSE)
+
 
 A key value store straight from your terminal.
 
