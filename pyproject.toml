@@ -1,8 +1,11 @@
 [tool.poetry]
 name = "shell-database"
-version = "0.1.0"
-description = "A key value store for the shell"
-authors = ["José Coelho <camilocoelho93@gmail.com>"]
+version = "0.1.1"
+description = "A key value store for the terminal"
+authors = ["José Coelho"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/jcoelho93/shell-database"
 
 [tool.poetry.dependencies]
 python = "^3.6"
