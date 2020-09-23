@@ -56,7 +56,3 @@ def list_keys(pattern: str = None, count: bool = False):
         print(len(keys))
     for key in keys:
         print(key)
-
-
-if __name__ == '__main__':
-    cli()
