@@ -1,0 +1,4 @@
+sqlitedict==1.7.0
+click==7.1.2
+fuzzywuzzy==0.18.0
+cryptography==3.1
