@@ -4,3 +4,6 @@ __pycache__
 .coverage
 .vscode/
 dist/
+test-results.xml
+coverage.xml
+build/
