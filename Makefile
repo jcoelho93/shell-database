@@ -18,10 +18,10 @@ build:
 uninstall:
 	python3.8 -m pip uninstall .
 
-tests:
+tests: install-deps install-dev-deps
 	python3.8 -m pytest --ignore W -v --junit-xml=test-results.xml tests/
 
-lint:
+lint: install-dev-deps
 	python3.8 -m flake8 shell_database
 
 coverage: install-deps install-dev-deps
