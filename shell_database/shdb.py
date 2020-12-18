@@ -1,7 +1,7 @@
 import click
 import logging
-from shell_database.store.store import DataStore
-from shell_database.store.encryption import EncryptionManager
+from shell_database.store import DataStore
+from shell_database.store import EncryptionManager
 
 
 _data_store = None

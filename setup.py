@@ -23,4 +23,5 @@ def load_requirements(fname: str) -> List[str]:
 setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=load_requirements("requirements.txt"),
+    scripts=['scripts/shdb']
 )
