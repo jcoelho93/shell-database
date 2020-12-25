@@ -28,6 +28,6 @@ coverage: install-deps install-dev-deps
 	python3.8 -m coverage run --branch --source shell_database -m pytest -- tests
 	python3.8 -m coverage xml --omit=**/__init__.py
 
-publish: build
+publish: build install-dev-deps
 	twine check
 	twine upload dist/*
