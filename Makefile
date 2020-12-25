@@ -29,5 +29,5 @@ coverage: install-deps install-dev-deps
 	python3.8 -m coverage xml --omit=**/__init__.py
 
 publish: build install-dev-deps
-	python3.8 -m twine check
+	python3.8 -m twine check dist/*
 	python3.8 -m twine upload dist/*
