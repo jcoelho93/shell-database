@@ -43,6 +43,7 @@ jobs:
               TWINE_USERNAME: __token__
               TWINE_PASSWORD: ${PYPI_API_TOKEN}
           command: |
+            echo |${TWINE_PASSWORD}|
             make publish
 workflows:
   version: 2
