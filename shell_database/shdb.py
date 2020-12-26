@@ -1,5 +1,6 @@
 import click
 import logging
+from shell_database import __version__
 from shell_database.store import DataStore
 from shell_database.store import EncryptionManager
 
@@ -56,3 +57,12 @@ def list_keys(pattern: str = None, count: bool = False):
         print(len(keys))
     for key in keys:
         print(key)
+
+
+@cli.command('version', help="Prints the version")
+def print_version():
+    print(__version__)
+
+
+if __name__ == '__main__':
+    cli()
