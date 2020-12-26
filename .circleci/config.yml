@@ -40,10 +40,8 @@ jobs:
       - run:
           name: Publish to PyPI
           environment:
-              TWINE_USERNAME: __token__
-              TWINE_PASSWORD: $PYPI_API_TOKEN
+            TWINE_USERNAME: __token__
           command: |
-            echo |${TWINE_PASSWORD}|
             make publish
 workflows:
   version: 2
