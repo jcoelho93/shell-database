@@ -1,2 +1,2 @@
-__version__ = '0.3.5'
+__version__ = '1.0.0'
 __encoding__ = "UTF-8"

@@ -23,7 +23,7 @@ class DataStore:
         with SqliteDict(str(self.store), autocommit=True) as db:
             try:
                 del db[key]
-            except KeyError as ke:
+            except KeyError:
                 pass
 
     def get(self, key) -> str:
