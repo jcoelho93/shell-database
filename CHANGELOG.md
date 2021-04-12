@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Print version command
+- Remove key command
 
 ## [0.3.5] - 25/12/2020
 ### Fixed
