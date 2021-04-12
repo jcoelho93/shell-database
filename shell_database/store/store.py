@@ -19,6 +19,13 @@ class DataStore:
         with SqliteDict(str(self.store), autocommit=True) as db:
             db[key] = value
 
+    def remove(self, key):
+        with SqliteDict(str(self.store), autocommit=True) as db:
+            try:
+                del db[key]
+            except KeyError as ke:
+                pass
+
     def get(self, key) -> str:
         with SqliteDict(str(self.store), flag='r', autocommit=True) as db:
             try:

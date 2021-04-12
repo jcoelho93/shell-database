@@ -48,6 +48,11 @@ def get(key, decrypt):
         print(value)
 
 
+@cli.command('remove', help="Remove a key value pair")
+@click.argument('key')
+def remove(key: str):
+    _data_store.remove(key)
+
 @cli.command('list', help="List the stored keys")
 @click.argument('pattern', required=False)
 @click.option('-c', '--count', help="Counts the number of keys found", required=False, is_flag=True)
