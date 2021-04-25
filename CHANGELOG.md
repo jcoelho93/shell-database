@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 25/04/2021
+### Fixed
+ - bytes are now printed as strings when decrypted
+
 ## [1.0.0] - 12/04/2021
 ### Added
 - Print version command
