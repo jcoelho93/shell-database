@@ -1,6 +1,6 @@
 import click
 import logging
-from shell_database import __version__
+from shell_database import __version__, __encoding__
 from shell_database.store import DataStore
 from shell_database.store import EncryptionManager
 
@@ -44,7 +44,10 @@ def get(key, decrypt):
     value = _data_store.get(key)
     if decrypt and isinstance(value, bytes):
         value = _encryption_manager.decrypt(value)
-    if value:
+
+    if isinstance(value, bytes):
+        print(value.decode(__encoding__))
+    else:
         print(value)
 
 
